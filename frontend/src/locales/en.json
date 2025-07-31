@@ -1,0 +1,155 @@
+{
+  "app": {
+    "name": "Maintify",
+    "tagline": "Maintenance Management System"
+  },
+  "navigation": {
+    "home": "Home",
+    "profile": "Profile",
+    "management": "Management",
+    "logout": "Logout",
+    "login": "Login"
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "subtitle": "Sign in to your Maintify account",
+      "username": "Username",
+      "password": "Password",
+      "submit": "Sign In",
+      "remember": "Remember me",
+      "forgot": "Forgot password?",
+      "demoAccounts": "Demo accounts",
+      "error": {
+        "invalid": "Invalid username or password",
+        "required": "All fields are required"
+      }
+    },
+    "logout": {
+      "success": "You have been successfully logged out"
+    }
+  },
+  "dashboard": {
+    "welcome": "Hello {name}",
+    "subtitle": "Welcome to your Maintify dashboard",
+    "overview": "Overview",
+    "quickActions": "Quick Actions",
+    "recentAlerts": "Recent Alerts",
+    "recentActivity": "Recent Activity",
+    "stats": {
+      "equipment": "Equipment",
+      "alerts": "Active Alerts",
+      "maintenance": "Maintenance",
+      "locations": "Locations"
+    },
+    "empty": {
+      "noAlerts": "No recent alerts",
+      "noActivity": "No recent activity"
+    },
+    "actions": {
+      "equipment": {
+        "title": "Equipment",
+        "description": "Manage equipment"
+      },
+      "maintenance": {
+        "title": "Maintenance",
+        "description": "Schedule tasks"
+      },
+      "reports": {
+        "title": "Reports",
+        "description": "View statistics"
+      },
+      "users": {
+        "title": "Users",
+        "description": "Access management"
+      }
+    }
+  },
+  "users": {
+    "title": "User Management",
+    "subtitle": "Administer platform user accounts",
+    "search": "Search for a user...",
+    "add": "Add a user",
+    "table": {
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "lastLogin": "Last Login",
+      "actions": "Actions"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "roles": {
+      "admin": "Administrator",
+      "technician": "Technician",
+      "user": "User"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "activate": "Activate",
+      "deactivate": "Deactivate"
+    }
+  },
+  "profile": {
+    "title": "My Profile",
+    "subtitle": "Manage your personal information",
+    "personalInfo": "Personal Information",
+    "accountSettings": "Account Settings",
+    "changePassword": "Change Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "username": "Username",
+    "email": "Email",
+    "phone": "Phone",
+    "success": {
+      "profileUpdated": "Profile updated successfully",
+      "passwordChanged": "Password changed successfully"
+    }
+  },
+  "alerts": {
+    "title": "Alert Management",
+    "subtitle": "Monitor and manage system alerts",
+    "noAlerts": "No alerts at the moment",
+    "severity": {
+      "high": "Critical",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "status": {
+      "active": "Active",
+      "resolved": "Resolved",
+      "acknowledged": "Acknowledged"
+    }
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Information",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "close": "Close"
+  },
+  "time": {
+    "justNow": "Just now",
+    "minutesAgo": "{count}min ago",
+    "hoursAgo": "{count}h ago",
+    "daysAgo": "{count}d ago",
+    "weeksAgo": "{count}w ago"
+  }
+}

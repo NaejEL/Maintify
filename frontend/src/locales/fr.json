@@ -1,0 +1,155 @@
+{
+  "app": {
+    "name": "Maintify",
+    "tagline": "Système de gestion de maintenance"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "profile": "Profil",
+    "management": "Gestion",
+    "logout": "Déconnexion",
+    "login": "Connexion"
+  },
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "subtitle": "Connectez-vous à votre compte Maintify",
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "submit": "Se connecter",
+      "remember": "Se souvenir de moi",
+      "forgot": "Mot de passe oublié ?",
+      "demoAccounts": "Comptes de démonstration",
+      "error": {
+        "invalid": "Nom d'utilisateur ou mot de passe invalide",
+        "required": "Tous les champs sont requis"
+      }
+    },
+    "logout": {
+      "success": "Vous avez été déconnecté avec succès"
+    }
+  },
+  "dashboard": {
+    "welcome": "Bonjour {name}",
+    "subtitle": "Bienvenue sur votre tableau de bord Maintify",
+    "overview": "Vue d'ensemble",
+    "quickActions": "Actions rapides",
+    "recentAlerts": "Alertes récentes",
+    "recentActivity": "Activité récente",
+    "stats": {
+      "equipment": "Équipements",
+      "alerts": "Alertes actives",
+      "maintenance": "Maintenances",
+      "locations": "Lieux"
+    },
+    "empty": {
+      "noAlerts": "Aucune alerte récente",
+      "noActivity": "Aucune activité récente"
+    },
+    "actions": {
+      "equipment": {
+        "title": "Équipements",
+        "description": "Gérer les équipements"
+      },
+      "maintenance": {
+        "title": "Maintenance",
+        "description": "Planifier des tâches"
+      },
+      "reports": {
+        "title": "Rapports",
+        "description": "Voir les statistiques"
+      },
+      "users": {
+        "title": "Utilisateurs",
+        "description": "Gestion des accès"
+      }
+    }
+  },
+  "users": {
+    "title": "Gestion des Utilisateurs",
+    "subtitle": "Administrez les comptes utilisateurs de la plateforme",
+    "search": "Rechercher un utilisateur...",
+    "add": "Ajouter un utilisateur",
+    "table": {
+      "name": "Nom",
+      "email": "Email",
+      "role": "Rôle",
+      "status": "Statut",
+      "lastLogin": "Dernière connexion",
+      "actions": "Actions"
+    },
+    "status": {
+      "active": "Actif",
+      "inactive": "Inactif"
+    },
+    "roles": {
+      "admin": "Administrateur",
+      "technician": "Technicien",
+      "user": "Utilisateur"
+    },
+    "actions": {
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "activate": "Activer",
+      "deactivate": "Désactiver"
+    }
+  },
+  "common": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "add": "Ajouter",
+    "search": "Rechercher",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "warning": "Attention",
+    "info": "Information",
+    "confirm": "Confirmer",
+    "yes": "Oui",
+    "no": "Non",
+    "close": "Fermer"
+  },
+  "profile": {
+    "title": "Mon Profil",
+    "subtitle": "Gérez vos informations personnelles",
+    "personalInfo": "Informations personnelles",
+    "accountSettings": "Paramètres du compte",
+    "changePassword": "Changer le mot de passe",
+    "currentPassword": "Mot de passe actuel",
+    "newPassword": "Nouveau mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "firstName": "Prénom",
+    "lastName": "Nom de famille",
+    "username": "Nom d'utilisateur",
+    "email": "Email",
+    "phone": "Téléphone",
+    "success": {
+      "profileUpdated": "Profil mis à jour avec succès",
+      "passwordChanged": "Mot de passe modifié avec succès"
+    }
+  },
+  "alerts": {
+    "title": "Gestion des Alertes",
+    "subtitle": "Surveillez et gérez les alertes du système",
+    "noAlerts": "Aucune alerte pour le moment",
+    "severity": {
+      "high": "Critique",
+      "medium": "Moyenne",
+      "low": "Faible"
+    },
+    "status": {
+      "active": "Active",
+      "resolved": "Résolue",
+      "acknowledged": "Acquittée"
+    }
+  },
+  "time": {
+    "justNow": "À l'instant",
+    "minutesAgo": "Il y a {count}min",
+    "hoursAgo": "Il y a {count}h",
+    "daysAgo": "Il y a {count}j",
+    "weeksAgo": "Il y a {count}sem"
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "app": {
+    "name": "Maintify",
+    "tagline": "Sistema de Gestión de Mantenimiento"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "profile": "Perfil",
+    "management": "Gestión",
+    "logout": "Cerrar Sesión",
+    "login": "Iniciar Sesión"
+  },
+  "auth": {
+    "login": {
+      "title": "Iniciar sesión",
+      "subtitle": "Inicia sesión en tu cuenta Maintify",
+      "username": "Nombre de usuario",
+      "password": "Contraseña",
+      "submit": "Iniciar sesión",
+      "remember": "Recordarme",
+      "forgot": "¿Olvidaste tu contraseña?",
+      "demoAccounts": "Cuentas de demostración",
+      "error": {
+        "invalid": "Nombre de usuario o contraseña inválidos",
+        "required": "Todos los campos son obligatorios"
+      }
+    },
+    "logout": {
+      "success": "Has cerrado sesión exitosamente"
+    }
+  },
+  "dashboard": {
+    "welcome": "Hola {name}",
+    "subtitle": "Bienvenido a tu panel de Maintify",
+    "overview": "Resumen",
+    "quickActions": "Acciones Rápidas",
+    "recentAlerts": "Alertas Recientes",
+    "recentActivity": "Actividad Reciente",
+    "stats": {
+      "equipment": "Equipos",
+      "alerts": "Alertas Activas",
+      "maintenance": "Mantenimiento",
+      "locations": "Ubicaciones"
+    },
+    "empty": {
+      "noAlerts": "No hay alertas recientes",
+      "noActivity": "No hay actividad reciente"
+    },
+    "actions": {
+      "equipment": {
+        "title": "Equipos",
+        "description": "Gestionar equipos"
+      },
+      "maintenance": {
+        "title": "Mantenimiento",
+        "description": "Programar tareas"
+      },
+      "reports": {
+        "title": "Reportes",
+        "description": "Ver estadísticas"
+      },
+      "users": {
+        "title": "Usuarios",
+        "description": "Gestión de acceso"
+      }
+    }
+  },
+  "users": {
+    "title": "Gestión de Usuarios",
+    "subtitle": "Administrar cuentas de usuario de la plataforma",
+    "search": "Buscar usuario...",
+    "add": "Agregar usuario",
+    "table": {
+      "name": "Nombre",
+      "email": "Email",
+      "role": "Rol",
+      "status": "Estado",
+      "lastLogin": "Último Acceso",
+      "actions": "Acciones"
+    },
+    "status": {
+      "active": "Activo",
+      "inactive": "Inactivo"
+    },
+    "roles": {
+      "admin": "Administrador",
+      "technician": "Técnico",
+      "user": "Usuario"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "activate": "Activar",
+      "deactivate": "Desactivar"
+    }
+  },
+  "profile": {
+    "title": "Perfil de Usuario",
+    "subtitle": "Administra tu información personal y configuración de cuenta",
+    "personalInfo": "Información Personal",
+    "accountSettings": "Configuración de Cuenta",
+    "fields": {
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "email": "Email",
+      "phone": "Teléfono",
+      "department": "Departamento",
+      "position": "Cargo"
+    },
+    "actions": {
+      "save": "Guardar Cambios",
+      "changePassword": "Cambiar Contraseña",
+      "uploadPhoto": "Subir Foto"
+    }
+  },
+  "common": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Agregar",
+    "search": "Buscar",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "warning": "Advertencia",
+    "info": "Información",
+    "confirm": "Confirmar",
+    "yes": "Sí",
+    "no": "No",
+    "close": "Cerrar"
+  },
+  "alerts": {
+    "title": "Gestión de Alertas",
+    "subtitle": "Monitorea y administra alertas del sistema automáticamente",
+    "createAlert": "Crear Nueva Alerta",
+    "table": {
+      "title": "Título",
+      "description": "Descripción",
+      "severity": "Severidad", 
+      "status": "Estado",
+      "createdAt": "Fecha de Creación",
+      "actions": "Acciones"
+    },
+    "severity": {
+      "high": "Alta",
+      "medium": "Media",
+      "low": "Baja"
+    },
+    "status": {
+      "active": "Activa",
+      "resolved": "Resuelta",
+      "pending": "Pendiente"
+    },
+    "actions": {
+      "view": "Ver",
+      "edit": "Editar", 
+      "resolve": "Resolver",
+      "delete": "Eliminar"
+    },
+    "empty": {
+      "title": "No hay alertas",
+      "description": "No se han configurado alertas en el sistema."
+    },
+    "form": {
+      "title": "Título de la alerta",
+      "description": "Descripción detallada",
+      "severity": "Nivel de severidad",
+      "submit": "Crear Alerta",
+      "cancel": "Cancelar"
+    }
+  },
+  "time": {
+    "justNow": "Justo ahora",
+    "minutesAgo": "Hace {count}min",
+    "hoursAgo": "Hace {count}h",
+    "daysAgo": "Hace {count}d",
+    "weeksAgo": "Hace {count}sem"
+  }
+}
