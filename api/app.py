@@ -17,26 +17,45 @@ CORS(app)
 from core.models import *
 
 # Enregistrement des Blueprints
-from plugins.alerts.routes import alerts_bp
-from plugins.dashboard.routes import dashboard_bp
-from plugins.reports.routes import reports_bp
 from core.auth.routes import auth_bp
-from api.plugin_loader import register_plugins
+from api.plugin_loader import register_plugins, get_plugin_manager
 
 # Add a simple root route
 @app.route('/')
 def index():
+    plugin_mgr = get_plugin_manager()
+    loaded_plugins = plugin_mgr.get_loaded_plugins()
+    
     return {
         "message": "Maintify API is running",
         "version": "1.0.0",
         "database": "PostgreSQL" if "postgresql" in app.config['SQLALCHEMY_DATABASE_URI'] else "SQLite",
+        "plugins": {
+            "count": len(loaded_plugins),
+            "loaded": list(loaded_plugins.keys())
+        },
         "endpoints": {
             "auth": "/api/auth",
-            "alerts": "/api/alerts", 
-            "dashboard": "/api/dashboard",
-            "reports": "/api/reports"
+            "plugins": "/api/plugins"
         }
     }
+
+@app.route('/api/plugins', methods=['GET'])
+def get_plugins_info():
+    """Retourne les informations sur tous les plugins chargés"""
+    plugin_mgr = get_plugin_manager()
+    return {
+        "plugins": plugin_mgr.get_loaded_plugins(),
+        "frontend_routes": plugin_mgr.get_frontend_routes(),
+        "menu_items": plugin_mgr.get_frontend_menu_items(),
+        "locales": plugin_mgr.get_plugins_locales()
+    }
+
+@app.route('/api/plugins/locales', methods=['GET'])
+def get_plugins_locales():
+    """Retourne uniquement les locales des plugins"""
+    plugin_mgr = get_plugin_manager()
+    return plugin_mgr.get_plugins_locales()
 
 app.register_blueprint(auth_bp, url_prefix='/api/auth')
 register_plugins(app)

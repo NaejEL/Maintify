@@ -1,0 +1,44 @@
+{
+  "fr": {
+    "title": "Tableau de Bord",
+    "subtitle": "Dashboard principal avec métriques et statistiques",
+    "welcome": "Bienvenue sur votre tableau de bord",
+    "overview": "Vue d'ensemble",
+    "stats": {
+      "equipment": "Équipements",
+      "alerts": "Alertes actives", 
+      "maintenance": "Maintenances",
+      "reports": "Rapports"
+    },
+    "quickActions": "Actions rapides",
+    "recentActivity": "Activité récente"
+  },
+  "en": {
+    "title": "Dashboard",
+    "subtitle": "Main dashboard with metrics and statistics",
+    "welcome": "Welcome to your dashboard",
+    "overview": "Overview",
+    "stats": {
+      "equipment": "Equipment",
+      "alerts": "Active Alerts",
+      "maintenance": "Maintenance",
+      "reports": "Reports"
+    },
+    "quickActions": "Quick Actions",
+    "recentActivity": "Recent Activity"
+  },
+  "es": {
+    "title": "Panel de Control",
+    "subtitle": "Panel principal con métricas y estadísticas",
+    "welcome": "Bienvenido a tu panel de control",
+    "overview": "Resumen",
+    "stats": {
+      "equipment": "Equipamiento",
+      "alerts": "Alertas Activas",
+      "maintenance": "Mantenimiento",
+      "reports": "Informes"
+    },
+    "quickActions": "Acciones Rápidas",
+    "recentActivity": "Actividad Reciente"
+  }
+}

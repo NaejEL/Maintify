@@ -14,6 +14,13 @@
             🏠 {{ $t('navigation.home') }}
           </router-link>
           
+          <!-- Navigation dynamique des plugins -->
+          <PluginNavigation />
+          
+          <router-link to="/plugin-test" class="nav-link" style="background: #28a745;">
+            🧪 Test Plugins
+          </router-link>
+          
           <router-link to="/profile" class="nav-link">
             👤 {{ $t('navigation.profile') }}
           </router-link>
@@ -58,12 +65,14 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import LanguageSelector from './components/LanguageSelector.vue'
+import PluginNavigation from './components/PluginNavigation.vue'
 
 export default {
   name: 'App',
   
   components: {
-    LanguageSelector
+    LanguageSelector,
+    PluginNavigation
   },
   
   computed: {

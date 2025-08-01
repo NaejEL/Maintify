@@ -1,13 +1,13 @@
 <template>
   <div class="alerts-container">
     <div class="alerts-header">
-      <h1>🚨 {{ $t('alerts.title') }}</h1>
-      <p>{{ $t('alerts.subtitle') }}</p>
+      <h1>🚨 {{ pt('title') }}</h1>
+      <p>{{ pt('subtitle') }}</p>
     </div>
     
     <div v-if="alerts.length === 0" class="no-alerts">
       <div class="empty-icon">✅</div>
-      <p>{{ $t('alerts.noAlerts') }}</p>
+      <p>{{ pt('noAlerts') }}</p>
     </div>
     
     <div v-else class="alerts-list">
@@ -23,7 +23,7 @@
         <div class="alert-content">
           <div class="alert-title">{{ alert.message }}</div>
           <div class="alert-meta">
-            <span class="alert-level">{{ $t(`alerts.severity.${alert.level}`) }}</span>
+            <span class="alert-level">{{ getSeverityText(alert.level) }}</span>
             <span class="alert-time">{{ formatDate(alert.created_at) }}</span>
           </div>
         </div>
@@ -48,6 +48,35 @@ export default {
   },
   
   methods: {
+    // Helper pour les traductions du plugin
+    pt(key) {
+      // Plugin Translation: traduit une clé en utilisant le namespace du plugin
+      return this.$t(`plugins.alerts.${key}`)
+    },
+    
+    // Helper pour vérifier si une clé de traduction existe
+    pte(key) {
+      return this.$te(`plugins.alerts.${key}`)
+    },
+    
+    // Mapper les niveaux de l'API vers les niveaux de traduction normalisés
+    normalizeLevel(level) {
+      const levelMapping = {
+        'critical': 'high',
+        'high': 'high',
+        'warning': 'medium',
+        'medium': 'medium',
+        'info': 'low',
+        'low': 'low'
+      }
+      return levelMapping[level] || 'medium'
+    },
+    
+    // Helper pour obtenir le texte du niveau de sévérité
+    getSeverityText(level) {
+      const mappedLevel = this.normalizeLevel(level)
+      return this.pt(`severity.${mappedLevel}`)
+    },
     async loadAlerts() {
       try {
         const response = await axios.get('/api/alerts')
@@ -75,7 +104,9 @@ export default {
     },
     
     getAlertIcon(severity) {
-      switch (severity) {
+      const mappedLevel = this.normalizeLevel(severity)
+      
+      switch (mappedLevel) {
         case 'high': return '🔴'
         case 'medium': return '🟡'
         case 'low': return '🟢'
@@ -90,4 +121,4 @@ export default {
 }
 </script>
 
-<style scoped src="@/css/components/alerts-view.scss" lang="scss"></style>
+<style scoped src="../styles/alerts.scss" lang="scss"></style>

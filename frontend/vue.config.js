@@ -12,5 +12,17 @@ module.exports = defineConfig({
         secure: false
       }
     }
+  },
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@plugins': '/app/plugins'
+      }
+    },
+    plugins: [
+      new (require('webpack').DefinePlugin)({
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(false)
+      })
+    ]
   }
 })

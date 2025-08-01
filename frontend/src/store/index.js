@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import auth from './auth'
+import plugins from './plugins'
 
 export default createStore({
   state: {
@@ -10,7 +11,8 @@ export default createStore({
   
   getters: {
     appLoading: state => state.appLoading,
-    notifications: state => state.notifications
+    notifications: state => state.notifications,
+    notification: state => state.notifications.length > 0 ? state.notifications[0] : null
   },
   
   mutations: {
@@ -45,10 +47,18 @@ export default createStore({
     
     removeNotification({ commit }, id) {
       commit('REMOVE_NOTIFICATION', id)
+    },
+    
+    clearNotification({ commit, state }) {
+      if (state.notifications.length > 0) {
+        const firstNotification = state.notifications[0]
+        commit('REMOVE_NOTIFICATION', firstNotification.id)
+      }
     }
   },
   
   modules: {
-    auth
+    auth,
+    plugins
   }
 })

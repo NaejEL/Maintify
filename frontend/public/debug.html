@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Debug - Maintify</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .debug-info {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .error {
+            background: #ffe6e6;
+            border-left: 4px solid #ff0000;
+        }
+        .success {
+            background: #e6ffe6;
+            border-left: 4px solid #00aa00;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Maintify - Test de Debug</h1>
+    
+    <div class="debug-info">
+        <h3>État de l'application</h3>
+        <p><strong>Frontend:</strong> <span id="frontend-status">🔄 Test en cours...</span></p>
+        <p><strong>Backend:</strong> <span id="backend-status">🔄 Test en cours...</span></p>
+        <p><strong>Vue App:</strong> <span id="vue-status">🔄 Test en cours...</span></p>
+    </div>
+    
+    <div class="debug-info">
+        <h3>Liens de test</h3>
+        <p><a href="/login">Page Login</a></p>
+        <p><a href="/test">Page Test Simple</a></p>
+        <p><a href="/">Accueil</a></p>
+    </div>
+    
+    <div class="debug-info">
+        <h3>Logs</h3>
+        <div id="logs" style="background: #f0f0f0; padding: 10px; max-height: 200px; overflow-y: auto; font-family: monospace;">
+        </div>
+    </div>
+
+    <script>
+        let errorCount = 0;
+        
+        // Capturer toutes les erreurs JavaScript
+        window.addEventListener('error', function(e) {
+            errorCount++;
+            addLog('❌ Erreur JS: ' + e.message + ' dans ' + e.filename + ':' + e.lineno);
+        });
+        
+        window.addEventListener('unhandledrejection', function(e) {
+            errorCount++;
+            addLog('❌ Promise rejetée: ' + e.reason);
+        });
+        
+        // Test du backend
+        fetch('/api/plugins')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('backend-status').innerHTML = '✅ Backend OK - ' + data.plugins.count + ' plugins';
+                addLog('✅ Backend API fonctionne');
+            })
+            .catch(error => {
+                document.getElementById('backend-status').innerHTML = '❌ Backend ERROR';
+                addLog('❌ Erreur Backend: ' + error.message);
+            });
+            
+        // Test de chargement des ressources
+        function checkResources() {
+            const scripts = document.querySelectorAll('script[src]');
+            const links = document.querySelectorAll('link[rel="stylesheet"]');
+            
+            addLog('📦 Scripts trouvés: ' + scripts.length);
+            addLog('🎨 CSS trouvés: ' + links.length);
+            
+            scripts.forEach((script, index) => {
+                addLog('📜 Script ' + index + ': ' + script.src);
+            });
+        }
+        
+        // Test des composants Vue - vérifier si l'app Vue est montée
+        setTimeout(() => {
+            const app = document.getElementById('app');
+            const indexPage = document.querySelector('html');
+            
+            addLog('🔍 HTML title: ' + document.title);
+            addLog('🔍 Scripts chargés: ' + document.scripts.length);
+            addLog('🔍 Erreurs JS détectées: ' + errorCount);
+            
+            if (app) {
+                if (app.innerHTML.trim() !== '') {
+                    document.getElementById('vue-status').innerHTML = '✅ Vue.js App montée';
+                    addLog('✅ Application Vue montée');
+                    addLog('🔍 Contenu app: ' + app.innerHTML.substring(0, 200));
+                } else {
+                    document.getElementById('vue-status').innerHTML = '❌ Vue.js App vide';
+                    addLog('❌ Application Vue vide');
+                }
+            } else {
+                document.getElementById('vue-status').innerHTML = '❌ Élément #app non trouvé';
+                addLog('❌ Élément #app non trouvé');
+            }
+            
+            checkResources();
+        }, 3000);
+        
+        function addLog(message) {
+            const logs = document.getElementById('logs');
+            const time = new Date().toLocaleTimeString();
+            logs.innerHTML += time + ' - ' + message + '\n';
+            logs.scrollTop = logs.scrollHeight;
+        }
+        
+        addLog('🔍 Page de debug chargée');
+        
+        // Test de la page principale après 1 seconde
+        setTimeout(() => {
+            fetch('/')
+                .then(response => response.text())
+                .then(html => {
+                    if (html.includes('<div id="app">')) {
+                        addLog('✅ Page principale contient #app');
+                    } else {
+                        addLog('❌ Page principale ne contient pas #app');
+                    }
+                    
+                    if (html.includes('main.js')) {
+                        addLog('✅ main.js référencé dans la page');
+                    } else {
+                        addLog('❌ main.js non référencé');
+                    }
+                })
+                .catch(err => addLog('❌ Erreur lors du test de la page principale: ' + err.message));
+        }, 1000);
+    </script>
+</body>
+</html>

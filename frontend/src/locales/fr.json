@@ -151,5 +151,95 @@
     "hoursAgo": "Il y a {count}h",
     "daysAgo": "Il y a {count}j",
     "weeksAgo": "Il y a {count}sem"
+  },
+  "plugins": {
+    "placeholder": {
+      "defaultTitle": "Composant en développement",
+      "defaultMessage": "Cette fonctionnalité est en cours de développement."
+    },
+    "info": {
+      "title": "Informations du plugin :",
+      "name": "Nom",
+      "version": "Version",
+      "description": "Description",
+      "author": "Auteur"
+    },
+    "loading": {
+      "discovering": "Découverte des plugins...",
+      "loading": "Chargement du plugin {name}...",
+      "error": "Erreur lors du chargement du plugin {name}"
+    },
+    "manager": {
+      "initialized": "Gestionnaire de plugins initialisé",
+      "failed": "Échec de l'initialisation du gestionnaire de plugins"
+    },
+    "dashboard": {
+      "title": "Tableau de bord",
+      "subtitle": "Vue d'ensemble de vos données",
+      "overview": "Vue d'ensemble",
+      "welcome": "Bienvenue sur votre tableau de bord personnalisé",
+      "stats": {
+        "equipment": "Équipements",
+        "alerts": "Alertes",
+        "maintenance": "Maintenances",
+        "total": "Total",
+        "active": "Actives",
+        "pending": "En attente",
+        "completed": "Terminées"
+      },
+      "noData": "Aucune donnée disponible"
+    },
+    "alerts": {
+      "title": "Alertes",
+      "subtitle": "Gestion des alertes système",
+      "noAlerts": "Aucune alerte active",
+      "levels": {
+        "high": "Élevé",
+        "medium": "Moyen", 
+        "low": "Faible",
+        "critical": "Critique",
+        "info": "Information"
+      },
+      "status": {
+        "active": "Active",
+        "resolved": "Résolue",
+        "acknowledged": "Acquittée"
+      }
+    },
+    "reports": {
+      "title": "Rapports",
+      "subtitle": "Générez et consultez vos rapports de maintenance",
+      "filters": {
+        "period": "Période",
+        "type": "Type de rapport",
+        "dateRange": "Période",
+        "equipment": "Équipement"
+      },
+      "periods": {
+        "week": "Semaine",
+        "month": "Mois",
+        "quarter": "Trimestre",
+        "year": "Année"
+      },
+      "types": {
+        "all": "Tous les rapports",
+        "maintenance": "Maintenance",
+        "equipment": "Équipements",
+        "alerts": "Alertes"
+      },
+      "common": {
+        "all": "Tous",
+        "date": "Date"
+      },
+      "noReports": "Aucun rapport disponible pour cette période",
+      "generated": "Généré le",
+      "period": "Période",
+      "actions": {
+        "download": "Télécharger",
+        "view": "Visualiser",
+        "export": "Exporter",
+        "print": "Imprimer"
+      }
+    }
   }
 }

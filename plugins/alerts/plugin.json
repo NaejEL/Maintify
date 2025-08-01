@@ -1,0 +1,36 @@
+{
+  "name": "alerts",
+  "version": "1.0.0",
+  "displayName": "Système d'Alertes",
+  "description": "Gestion et affichage des alertes de maintenance",
+  "author": "Maintify Core Team",
+  "backend": {
+    "module": "backend.routes",
+    "blueprint": "alerts_bp",
+    "url_prefix": "/api",
+    "permissions": ["user", "technician", "admin"],
+    "dependencies": ["database"]
+  },
+  "frontend": {
+    "routes": [
+      {
+        "path": "/alerts",
+        "name": "Alerts",
+        "component": "AlertsView",
+        "meta": {
+          "requiresAuth": true,
+          "title": "Alertes"
+        }
+      }
+    ],
+    "menu": {
+      "label": "navigation.alerts",
+      "icon": "🚨",
+      "order": 20
+    },
+    "styles": [
+      "components/alerts-view.scss"
+    ]
+  },
+  "enabled": true
+}

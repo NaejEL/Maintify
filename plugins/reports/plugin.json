@@ -1,0 +1,34 @@
+{
+  "name": "reports",
+  "version": "1.0.0",
+  "displayName": "Rapports",
+  "description": "Génération et gestion des rapports de maintenance",
+  "author": "Maintify Core Team",
+  "backend": {
+    "module": "backend.routes",
+    "blueprint": "reports_bp",
+    "url_prefix": "/api",
+    "permissions": ["technician", "admin"],
+    "dependencies": ["database"]
+  },
+  "frontend": {
+    "routes": [
+      {
+        "path": "/reports",
+        "name": "Reports",
+        "component": "ReportsView",
+        "meta": {
+          "requiresAuth": true,
+          "requiresTechnician": true,
+          "title": "Rapports"
+        }
+      }
+    ],
+    "menu": {
+      "label": "navigation.reports",
+      "icon": "📋",
+      "order": 30
+    }
+  },
+  "enabled": true
+}

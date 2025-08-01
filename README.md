@@ -31,39 +31,32 @@ Maintify propose une interface utilisateur intuitive et moderne, avec un systèm
 
 ## ✨ Fonctionnalités
 
-### 🔐 Authentification & Autorisation
+### � Architecture modulaire avec plugins dynamiques
+
+- **Système de plugins** chargés dynamiquement
+- **Routage dynamique** des composants Vue.js
+- **API découverte automatique** des modules
+- **Chargement à chaud** des fonctionnalités
+
+### �🔐 Authentification & Autorisation
 
 - **Connexion sécurisée** avec JWT
 - **Gestion des rôles** (Admin, Technicien, Utilisateur)
 - **Sessions persistantes**
-- **Comptes de démonstration** pour les tests
+- **Guards d'authentification** par route
 
-### 📊 Tableau de bord
+### 📊 Modules disponibles
 
-- **Vue d'ensemble** en temps réel
-- **Statistiques** des équipements et alertes
-- **Activité récente**
-- **Actions rapides** contextuelles
-
-### 👥 Gestion des utilisateurs
-
-- **Administration** complète des comptes
-- **Attribution de rôles**
-- **Suivi des connexions**
-- **Interface de gestion** intuitive
-
-### 🚨 Système d'alertes
-
-- **Création d'alertes** personnalisées
-- **Niveaux de gravité** (Élevée, Moyenne, Faible)
-- **Suivi du statut** (Active, Résolue, En cours)
-- **Interface de gestion** dédiée
+- **🏠 Dashboard** : Vue d'ensemble et statistiques
+- **🚨 Alertes** : Gestion des alertes système
+- **📋 Reports** : Génération de rapports
+- **👥 Gestion utilisateurs** : Administration des comptes
 
 ### 🌍 Multilingue
 
 - **3 langues supportées** : Français 🇫🇷, Anglais 🇺🇸, Espagnol 🇪🇸
 - **Commutation en temps réel**
-- **Traductions complètes** de l'interface
+- **Support i18n des plugins**
 - **Persistance des préférences**
 
 ## 🛠️ Technologies
@@ -79,16 +72,17 @@ Maintify propose une interface utilisateur intuitive et moderne, avec un systèm
 ### Frontend
 
 - **[Vue.js 3](https://vuejs.org/)** - Framework JavaScript moderne
-- **[Vue Router](https://router.vuejs.org/)** - Routage SPA
+- **[Vue Router](https://router.vuejs.org/)** - Routage dynamique et SPA
 - **[Vuex](https://vuex.vuejs.org/)** - Gestion d'état centralisée
 - **[Vue I18n](https://vue-i18n.intlify.dev/)** - Internationalisation
 - **[Axios](https://axios-http.com/)** - Client HTTP
+- **[SCSS](https://sass-lang.com/)** - Styles modulaires
 
 ### Infrastructure
 
-- **[Docker](https://docker.com/)** - Conteneurisation
-- **[Docker Compose](https://docs.docker.com/compose/)** - Orchestration
-- **[Nginx](https://nginx.org/)** (optionnel) - Serveur web/proxy
+- **[Docker](https://docker.com/)** - Conteneurisation complète
+- **[Docker Compose](https://docs.docker.com/compose/)** - Orchestration des services
+- **[Webpack](https://webpack.js.org/)** - Build et modules dynamiques
 
 ## 🚀 Installation
 
@@ -139,12 +133,15 @@ docker-compose exec backend python init_db.py
 - **👤 Profil** : Gestion du profil utilisateur
 - **👥 Gestion** : Administration des utilisateurs (admin uniquement)
 - **🚨 Alertes** : Gestion des alertes système
+- **📋 Reports** : Génération de rapports
+- **🔌 Plugins** : Navigation dynamique basée sur les plugins chargés
 
-### 3. Changement de langue
+### 3. Système de plugins
 
-- Cliquez sur le sélecteur de langue (🇫🇷 FR) en haut à droite
-- Choisissez parmi Français, English ou Español
-- L'interface change instantanément
+- Les **plugins sont chargés automatiquement** au démarrage
+- **Navigation dynamique** : les routes apparaissent selon les plugins disponibles
+- **Chargement à chaud** : ajout/suppression de plugins sans redémarrage
+- **Isolation** : chaque plugin est indépendant
 
 ## 🌍 Internationalisation
 
@@ -164,38 +161,151 @@ frontend/src/i18n.js
 
 ## 🏗️ Architecture
 
-### Structure modulaire
+### Structure modulaire avec plugins dynamiques
 
 ```
 Maintify/
 ├── 🐳 docker-compose.yml     # Orchestration des services
 ├── 📁 frontend/              # Application Vue.js
-│   ├── 📁 src/components/    # Composants Vue
-│   ├── 📁 src/locales/       # Traductions i18n
-│   └── 📁 src/store/         # État Vuex
+│   ├── 📁 src/
+│   │   ├── 📁 components/    # Composants Vue
+│   │   ├── 📁 router/        # Router dynamique
+│   │   │   └── dynamic.js    # Chargement dynamique des routes
+│   │   ├── 📁 plugins/       # Gestionnaires de plugins
+│   │   │   ├── plugin-manager.js
+│   │   │   └── i18n-manager.js
+│   │   ├── 📁 locales/       # Traductions i18n
+│   │   └── 📁 store/         # État Vuex
 ├── 📁 api/                   # API Flask
 ├── 📁 core/                  # Logique métier
 │   ├── 📁 auth/              # Authentification
 │   └── 📁 models/            # Modèles de données
-├── 📁 plugins/               # Modules fonctionnels
-│   ├── 📁 alerts/            # Gestion des alertes
-│   ├── 📁 dashboard/         # Tableau de bord
-│   └── 📁 reports/           # Rapports
+├── 📁 plugins/               # 🔌 Modules plugins
+│   ├── 📁 alerts/            # Plugin alertes
+│   │   ├── 📁 backend/       # API et logique
+│   │   ├── 📁 frontend/      # Composants Vue
+│   │   │   └── 📁 components/
+│   │   └── plugin.json       # Configuration
+│   ├── 📁 dashboard/         # Plugin tableau de bord
+│   └── 📁 reports/           # Plugin rapports
 └── 📁 tests/                 # Tests unitaires
 ```
 
-### Architecture des plugins
+### Système de plugins dynamiques
 
-Maintify utilise une architecture modulaire basée sur des plugins :
+**Maintify** utilise une architecture révolutionnaire basée sur des plugins chargés dynamiquement :
 
-```python
-# Exemple de plugin
-plugins/
-├── mon_plugin/
-│   ├── models.py      # Modèles de données
-│   ├── routes.py      # Endpoints API
-│   └── services.py    # Logique métier
+#### 🔄 Chargement automatique
+- **Découverte automatique** des plugins via l'API backend
+- **Routage dynamique** des composants Vue.js
+- **Chargement à chaud** sans redémarrage
+- **Isolation complète** entre plugins
+
+#### 📁 Structure d'un plugin
+
+```yaml
+plugins/mon_plugin/
+├── plugin.json              # Configuration du plugin
+├── backend/                 # Logique serveur
+│   ├── models.py           # Modèles de données
+│   ├── routes.py           # Endpoints API
+│   └── services.py         # Logique métier
+├── frontend/               # Interface utilisateur
+│   ├── components/         # Composants Vue
+│   └── styles/            # Styles SCSS
+└── locales/               # Traductions i18n
+    └── messages.json
 ```
+
+#### ⚙️ Configuration plugin.json
+
+```json
+{
+  "name": "mon_plugin",
+  "version": "1.0.0",
+  "description": "Description du plugin",
+  "author": "Développeur",
+  "backend": {
+    "module": "backend.routes",
+    "prefix": "/api/mon_plugin"
+  },
+  "frontend": {
+    "routes": [
+      {
+        "path": "/mon_plugin",
+        "component": "MonPluginView",
+        "name": "MonPlugin"
+      }
+    ]
+  }
+}
+```
+
+## 🔌 Développement de plugins
+
+### Créer un nouveau plugin
+
+```bash
+# 1. Créer la structure du plugin
+mkdir -p plugins/mon_plugin/{backend,frontend/components,locales}
+
+# 2. Créer la configuration
+cat > plugins/mon_plugin/plugin.json << EOF
+{
+  "name": "mon_plugin",
+  "version": "1.0.0",
+  "description": "Mon nouveau plugin",
+  "author": "Développeur",
+  "backend": {
+    "module": "backend.routes",
+    "prefix": "/api/mon_plugin"
+  },
+  "frontend": {
+    "routes": [
+      {
+        "path": "/mon_plugin",
+        "component": "MonPluginView",
+        "name": "MonPlugin",
+        "meta": {"requiresAuth": true}
+      }
+    ]
+  }
+}
+EOF
+
+# 3. Créer le composant Vue
+cat > plugins/mon_plugin/frontend/components/MonPluginView.vue << EOF
+<template>
+  <div class="mon-plugin">
+    <h1>Mon Plugin</h1>
+    <p>Contenu de mon plugin personnalisé</p>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'MonPluginView'
+}
+</script>
+EOF
+
+# 4. Créer les routes backend
+cat > plugins/mon_plugin/backend/routes.py << EOF
+from flask import Blueprint
+
+bp = Blueprint('mon_plugin', __name__, url_prefix='/api/mon_plugin')
+
+@bp.route('/')
+def index():
+    return {'message': 'Mon plugin fonctionne !'}
+EOF
+```
+
+### Chargement automatique
+
+1. **Redémarrer le backend** : `docker-compose restart backend`
+2. **Accéder à** `http://localhost:8080/mon_plugin`
+3. **Le plugin apparaît automatiquement** dans la navigation !
 
 ## 🧪 Tests
 
@@ -261,21 +371,27 @@ git push origin feature/ma-nouvelle-fonctionnalite
 ## 📈 Roadmap
 
 ### Version 1.1 (Q3 2025)
+
+- [ ] API de gestion des plugins à chaud
+- [ ] Interface d'administration des plugins
 - [ ] Module de gestion des équipements
 - [ ] Maintenance préventive programmée
 - [ ] Rapports avancés avec graphiques
-- [ ] API REST complète
 
 ### Version 1.2 (Q4 2025)
+
 - [ ] Application mobile (React Native)
 - [ ] Notifications en temps réel
+- [ ] Marketplace de plugins
 - [ ] Intégration IoT
 - [ ] Export/Import de données
 
 ### Version 2.0 (2026)
+
 - [ ] Microservices architecture
 - [ ] Machine Learning pour maintenance prédictive
 - [ ] Tableau de bord analytics avancé
+- [ ] SDK de développement de plugins
 - [ ] Intégrations tierces (SAP, etc.)
 
 ## 📄 Licence

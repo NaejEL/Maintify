@@ -89,22 +89,27 @@ export default {
   actions: {
     // Initialiser l'authentification au chargement de l'app
     async initAuth({ commit, dispatch }) {
-      const token = localStorage.getItem('auth_token')
-      const userData = localStorage.getItem('user_data')
-      
-      if (token && userData) {
-        try {
+      try {
+        const token = localStorage.getItem('auth_token')
+        const userData = localStorage.getItem('user_data')
+        
+        if (token && userData) {
           commit('SET_AUTH_DATA', {
             token,
             user: JSON.parse(userData)
           })
           
           // Vérifier que le token est toujours valide
-          await dispatch('fetchProfile')
-        } catch (error) {
-          console.error('Token invalide:', error)
-          commit('CLEAR_AUTH_DATA')
+          try {
+            await dispatch('fetchProfile')
+          } catch (error) {
+            console.warn('Token invalide ou expiré:', error)
+            commit('CLEAR_AUTH_DATA')
+          }
         }
+      } catch (error) {
+        console.error('Erreur lors de l\'initialisation de l\'authentification:', error)
+        commit('CLEAR_AUTH_DATA')
       }
     },
     

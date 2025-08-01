@@ -1,0 +1,68 @@
+{
+  "fr": {
+    "title": "Système d'Alertes",
+    "subtitle": "Surveillez et gérez les alertes du système",
+    "noAlerts": "Aucune alerte pour le moment",
+    "loading": "Chargement des alertes...",
+    "error": "Erreur lors du chargement des alertes",
+    "severity": {
+      "high": "Critique",
+      "medium": "Moyenne",
+      "low": "Faible"
+    },
+    "status": {
+      "active": "Active",
+      "resolved": "Résolue",
+      "acknowledged": "Acquittée"
+    },
+    "actions": {
+      "acknowledge": "Acquitter",
+      "resolve": "Résoudre",
+      "view": "Voir détails"
+    }
+  },
+  "en": {
+    "title": "Alert System",
+    "subtitle": "Monitor and manage system alerts",
+    "noAlerts": "No alerts at the moment",
+    "loading": "Loading alerts...",
+    "error": "Error loading alerts",
+    "severity": {
+      "high": "Critical",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "status": {
+      "active": "Active",
+      "resolved": "Resolved",
+      "acknowledged": "Acknowledged"
+    },
+    "actions": {
+      "acknowledge": "Acknowledge",
+      "resolve": "Resolve",
+      "view": "View details"
+    }
+  },
+  "es": {
+    "title": "Sistema de Alertas",
+    "subtitle": "Monitorea y gestiona las alertas del sistema",
+    "noAlerts": "No hay alertas en este momento",
+    "loading": "Cargando alertas...",
+    "error": "Error al cargar las alertas",
+    "severity": {
+      "high": "Crítica",
+      "medium": "Media",
+      "low": "Baja"
+    },
+    "status": {
+      "active": "Activa",
+      "resolved": "Resuelta",
+      "acknowledged": "Reconocida"
+    },
+    "actions": {
+      "acknowledge": "Reconocer",
+      "resolve": "Resolver",
+      "view": "Ver detalles"
+    }
+  }
+}

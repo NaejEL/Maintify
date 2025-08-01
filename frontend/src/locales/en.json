@@ -151,5 +151,95 @@
     "hoursAgo": "{count}h ago",
     "daysAgo": "{count}d ago",
     "weeksAgo": "{count}w ago"
+  },
+  "plugins": {
+    "placeholder": {
+      "defaultTitle": "Component under development",
+      "defaultMessage": "This feature is currently under development."
+    },
+    "info": {
+      "title": "Plugin information:",
+      "name": "Name",
+      "version": "Version",
+      "description": "Description",
+      "author": "Author"
+    },
+    "loading": {
+      "discovering": "Discovering plugins...",
+      "loading": "Loading plugin {name}...",
+      "error": "Error loading plugin {name}"
+    },
+    "manager": {
+      "initialized": "Plugin manager initialized",
+      "failed": "Failed to initialize plugin manager"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "Overview of your data",
+      "overview": "Overview",
+      "welcome": "Welcome to your personalized dashboard",
+      "stats": {
+        "equipment": "Equipment",
+        "alerts": "Alerts", 
+        "maintenance": "Maintenance",
+        "total": "Total",
+        "active": "Active",
+        "pending": "Pending",
+        "completed": "Completed"
+      },
+      "noData": "No data available"
+    },
+    "alerts": {
+      "title": "Alerts",
+      "subtitle": "System alerts management",
+      "noAlerts": "No active alerts",
+      "levels": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low", 
+        "critical": "Critical",
+        "info": "Information"
+      },
+      "status": {
+        "active": "Active",
+        "resolved": "Resolved",
+        "acknowledged": "Acknowledged"
+      }
+    },
+    "reports": {
+      "title": "Reports",
+      "subtitle": "Generate and view your maintenance reports",
+      "filters": {
+        "period": "Period",
+        "type": "Report type",
+        "dateRange": "Date Range",
+        "equipment": "Equipment"
+      },
+      "periods": {
+        "week": "Week",
+        "month": "Month",
+        "quarter": "Quarter",
+        "year": "Year"
+      },
+      "types": {
+        "all": "All reports",
+        "maintenance": "Maintenance",
+        "equipment": "Equipment",
+        "alerts": "Alerts"
+      },
+      "common": {
+        "all": "All",
+        "date": "Date"
+      },
+      "noReports": "No reports available for this period",
+      "generated": "Generated on",
+      "period": "Period",
+      "actions": {
+        "download": "Download",
+        "view": "View",
+        "export": "Export",
+        "print": "Print"
+      }
+    }
   }
 }

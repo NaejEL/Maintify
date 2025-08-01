@@ -1,0 +1,59 @@
+.placeholder-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.placeholder-content {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.placeholder-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.placeholder-title {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.placeholder-message {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.plugin-info {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.plugin-info h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.plugin-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.plugin-info li {
+  margin-bottom: 8px;
+  color: #34495e;
+}
+
+.plugin-info strong {
+  color: #2c3e50;
+}

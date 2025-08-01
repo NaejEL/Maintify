@@ -1,0 +1,122 @@
+{
+  "fr": {
+    "title": "Rapports",
+    "subtitle": "Génération et gestion des rapports de maintenance",
+    "noReports": "Aucun rapport disponible",
+    "loading": "Génération du rapport...",
+    "error": "Erreur lors de la génération du rapport",
+    "types": {
+      "maintenance": "Rapport de maintenance",
+      "equipment": "Rapport d'équipement",
+      "alerts": "Rapport d'alertes",
+      "performance": "Rapport de performance"
+    },
+    "filters": {
+      "dateRange": "Période",
+      "equipment": "Équipement",
+      "status": "Statut"
+    },
+    "actions": {
+      "generate": "Générer",
+      "export": "Exporter",
+      "print": "Imprimer",
+      "share": "Partager"
+    },
+    "common": {
+      "all": "Tous",
+      "date": "Date",
+      "time": {
+        "week": "Semaine",
+        "month": "Mois",
+        "quarter": "Trimestre",
+        "year": "Année"
+      }
+    },
+    "periods": {
+      "week": "Semaine",
+      "month": "Mois",
+      "quarter": "Trimestre",
+      "year": "Année"
+    }
+  },
+  "en": {
+    "title": "Reports",
+    "subtitle": "Generation and management of maintenance reports",
+    "noReports": "No reports available",
+    "loading": "Generating report...",
+    "error": "Error generating report",
+    "types": {
+      "maintenance": "Maintenance Report",
+      "equipment": "Equipment Report",
+      "alerts": "Alerts Report",
+      "performance": "Performance Report"
+    },
+    "filters": {
+      "dateRange": "Date Range",
+      "equipment": "Equipment",
+      "status": "Status"
+    },
+    "actions": {
+      "generate": "Generate",
+      "export": "Export",
+      "print": "Print",
+      "share": "Share"
+    },
+    "common": {
+      "all": "All",
+      "date": "Date",
+      "time": {
+        "week": "Week",
+        "month": "Month",
+        "quarter": "Quarter",
+        "year": "Year"
+      }
+    },
+    "periods": {
+      "week": "Week",
+      "month": "Month",
+      "quarter": "Quarter",
+      "year": "Year"
+    }
+  },
+  "es": {
+    "title": "Informes",
+    "subtitle": "Generación y gestión de informes de mantenimiento",
+    "noReports": "No hay informes disponibles",
+    "loading": "Generando informe...",
+    "error": "Error al generar el informe",
+    "types": {
+      "maintenance": "Informe de Mantenimiento",
+      "equipment": "Informe de Equipamiento",
+      "alerts": "Informe de Alertas",
+      "performance": "Informe de Rendimiento"
+    },
+    "filters": {
+      "dateRange": "Rango de Fechas",
+      "equipment": "Equipamiento",
+      "status": "Estado"
+    },
+    "actions": {
+      "generate": "Generar",
+      "export": "Exportar",
+      "print": "Imprimir",
+      "share": "Compartir"
+    },
+    "common": {
+      "all": "Todos",
+      "date": "Fecha",
+      "time": {
+        "week": "Semana",
+        "month": "Mes",
+        "quarter": "Trimestre",
+        "year": "Año"
+      }
+    },
+    "periods": {
+      "week": "Semana",
+      "month": "Mes",
+      "quarter": "Trimestre",
+      "year": "Año"
+    }
+  }
+}

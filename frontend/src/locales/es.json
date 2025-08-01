@@ -12,13 +12,13 @@
   },
   "auth": {
     "login": {
-      "title": "Iniciar sesión",
-      "subtitle": "Inicia sesión en tu cuenta Maintify",
+      "title": "Iniciar Sesión",
+      "subtitle": "Conecta a tu cuenta Maintify",
       "username": "Nombre de usuario",
       "password": "Contraseña",
-      "submit": "Iniciar sesión",
+      "submit": "Conectar",
       "remember": "Recordarme",
-      "forgot": "¿Olvidaste tu contraseña?",
+      "forgot": "¿Contraseña olvidada?",
       "demoAccounts": "Cuentas de demostración",
       "error": {
         "invalid": "Nombre de usuario o contraseña inválidos",
@@ -26,20 +26,20 @@
       }
     },
     "logout": {
-      "success": "Has cerrado sesión exitosamente"
+      "success": "Has sido desconectado exitosamente"
     }
   },
   "dashboard": {
     "welcome": "Hola {name}",
-    "subtitle": "Bienvenido a tu panel de Maintify",
+    "subtitle": "Bienvenido a tu panel de control Maintify",
     "overview": "Resumen",
-    "quickActions": "Acciones Rápidas",
-    "recentAlerts": "Alertas Recientes",
-    "recentActivity": "Actividad Reciente",
+    "quickActions": "Acciones rápidas",
+    "recentAlerts": "Alertas recientes",
+    "recentActivity": "Actividad reciente",
     "stats": {
       "equipment": "Equipos",
-      "alerts": "Alertas Activas",
-      "maintenance": "Mantenimiento",
+      "alerts": "Alertas activas",
+      "maintenance": "Mantenimientos",
       "locations": "Ubicaciones"
     },
     "empty": {
@@ -53,7 +53,7 @@
       },
       "maintenance": {
         "title": "Mantenimiento",
-        "description": "Programar tareas"
+        "description": "Planificar tareas"
       },
       "reports": {
         "title": "Reportes",
@@ -61,13 +61,13 @@
       },
       "users": {
         "title": "Usuarios",
-        "description": "Gestión de acceso"
+        "description": "Gestión de accesos"
       }
     }
   },
   "users": {
     "title": "Gestión de Usuarios",
-    "subtitle": "Administrar cuentas de usuario de la plataforma",
+    "subtitle": "Administra las cuentas de usuario de la plataforma",
     "search": "Buscar usuario...",
     "add": "Agregar usuario",
     "table": {
@@ -75,7 +75,7 @@
       "email": "Email",
       "role": "Rol",
       "status": "Estado",
-      "lastLogin": "Último Acceso",
+      "lastLogin": "Último acceso",
       "actions": "Acciones"
     },
     "status": {
@@ -92,25 +92,6 @@
       "delete": "Eliminar",
       "activate": "Activar",
       "deactivate": "Desactivar"
-    }
-  },
-  "profile": {
-    "title": "Perfil de Usuario",
-    "subtitle": "Administra tu información personal y configuración de cuenta",
-    "personalInfo": "Información Personal",
-    "accountSettings": "Configuración de Cuenta",
-    "fields": {
-      "firstName": "Nombre",
-      "lastName": "Apellido",
-      "email": "Email",
-      "phone": "Teléfono",
-      "department": "Departamento",
-      "position": "Cargo"
-    },
-    "actions": {
-      "save": "Guardar Cambios",
-      "changePassword": "Cambiar Contraseña",
-      "uploadPhoto": "Subir Foto"
     }
   },
   "common": {
@@ -130,51 +111,135 @@
     "no": "No",
     "close": "Cerrar"
   },
+  "profile": {
+    "title": "Mi Perfil",
+    "subtitle": "Gestiona tu información personal",
+    "personalInfo": "Información personal",
+    "accountSettings": "Configuración de cuenta",
+    "changePassword": "Cambiar contraseña",
+    "currentPassword": "Contraseña actual",
+    "newPassword": "Nueva contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "username": "Nombre de usuario",
+    "email": "Email",
+    "phone": "Teléfono",
+    "success": {
+      "profileUpdated": "Perfil actualizado exitosamente",
+      "passwordChanged": "Contraseña cambiada exitosamente"
+    }
+  },
   "alerts": {
     "title": "Gestión de Alertas",
-    "subtitle": "Monitorea y administra alertas del sistema automáticamente",
-    "createAlert": "Crear Nueva Alerta",
-    "table": {
-      "title": "Título",
-      "description": "Descripción",
-      "severity": "Severidad", 
-      "status": "Estado",
-      "createdAt": "Fecha de Creación",
-      "actions": "Acciones"
-    },
+    "subtitle": "Monitorea y gestiona las alertas del sistema",
+    "noAlerts": "No hay alertas en este momento",
     "severity": {
-      "high": "Alta",
+      "high": "Crítica",
       "medium": "Media",
       "low": "Baja"
     },
     "status": {
       "active": "Activa",
       "resolved": "Resuelta",
-      "pending": "Pendiente"
-    },
-    "actions": {
-      "view": "Ver",
-      "edit": "Editar", 
-      "resolve": "Resolver",
-      "delete": "Eliminar"
-    },
-    "empty": {
-      "title": "No hay alertas",
-      "description": "No se han configurado alertas en el sistema."
-    },
-    "form": {
-      "title": "Título de la alerta",
-      "description": "Descripción detallada",
-      "severity": "Nivel de severidad",
-      "submit": "Crear Alerta",
-      "cancel": "Cancelar"
+      "acknowledged": "Reconocida"
     }
   },
   "time": {
-    "justNow": "Justo ahora",
+    "justNow": "Ahora mismo",
     "minutesAgo": "Hace {count}min",
     "hoursAgo": "Hace {count}h",
     "daysAgo": "Hace {count}d",
     "weeksAgo": "Hace {count}sem"
+  },
+  "plugins": {
+    "placeholder": {
+      "defaultTitle": "Componente en desarrollo",
+      "defaultMessage": "Esta funcionalidad está en desarrollo."
+    },
+    "info": {
+      "title": "Información del plugin:",
+      "name": "Nombre",
+      "version": "Versión",
+      "description": "Descripción",
+      "author": "Autor"
+    },
+    "loading": {
+      "discovering": "Descubriendo plugins...",
+      "loading": "Cargando plugin {name}...",
+      "error": "Error al cargar el plugin {name}"
+    },
+    "manager": {
+      "initialized": "Gestor de plugins inicializado",
+      "failed": "Fallo al inicializar el gestor de plugins"
+    },
+    "dashboard": {
+      "title": "Panel de control",
+      "subtitle": "Resumen de tus datos",
+      "overview": "Resumen",
+      "welcome": "Bienvenido a tu panel personalizado",
+      "stats": {
+        "equipment": "Equipos",
+        "alerts": "Alertas",
+        "maintenance": "Mantenimiento",
+        "total": "Total",
+        "active": "Activas",
+        "pending": "Pendientes",
+        "completed": "Completadas"
+      },
+      "noData": "No hay datos disponibles"
+    },
+    "alerts": {
+      "title": "Alertas",
+      "subtitle": "Gestión de alertas del sistema",
+      "noAlerts": "No hay alertas activas",
+      "levels": {
+        "high": "Alta",
+        "medium": "Media",
+        "low": "Baja",
+        "critical": "Crítica", 
+        "info": "Información"
+      },
+      "status": {
+        "active": "Activa",
+        "resolved": "Resuelta",
+        "acknowledged": "Reconocida"
+      }
+    },
+    "reports": {
+      "title": "Informes",
+      "subtitle": "Genera y consulta tus informes de mantenimiento",
+      "filters": {
+        "period": "Período",
+        "type": "Tipo de informe",
+        "dateRange": "Rango de Fechas",
+        "equipment": "Equipamiento"
+      },
+      "periods": {
+        "week": "Semana",
+        "month": "Mes",
+        "quarter": "Trimestre",
+        "year": "Año"
+      },
+      "types": {
+        "all": "Todos los informes",
+        "maintenance": "Mantenimiento",
+        "equipment": "Equipos",
+        "alerts": "Alertas"
+      },
+      "common": {
+        "all": "Todos",
+        "date": "Fecha"
+      },
+      "noReports": "No hay informes disponibles para este período",
+      "generated": "Generado el",
+      "period": "Período",
+      "actions": {
+        "download": "Descargar",
+        "view": "Ver",
+        "export": "Exportar",
+        "print": "Imprimir"
+      }
+    }
   }
 }

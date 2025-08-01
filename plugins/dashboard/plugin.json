@@ -1,0 +1,33 @@
+{
+  "name": "dashboard",
+  "version": "1.0.0",
+  "displayName": "Tableau de Bord",
+  "description": "Dashboard principal avec métriques et statistiques",
+  "author": "Maintify Core Team",
+  "backend": {
+    "module": "backend.routes",
+    "blueprint": "dashboard_bp",
+    "url_prefix": "/api",
+    "permissions": ["user", "technician", "admin"],
+    "dependencies": ["database"]
+  },
+  "frontend": {
+    "routes": [
+      {
+        "path": "/dashboard",
+        "name": "Dashboard",
+        "component": "Home",
+        "meta": {
+          "requiresAuth": true,
+          "title": "Tableau de bord"
+        }
+      }
+    ],
+    "menu": {
+      "label": "navigation.dashboard",
+      "icon": "📊",
+      "order": 10
+    }
+  },
+  "enabled": true
+}
