@@ -1,0 +1,8 @@
+# CODEOWNERS
+# Security-sensitive files require owner review on every PR.
+
+* @NaejEL
+
+.github/workflows/*          @NaejEL
+.github/PULL_REQUEST_TEMPLATE.md @NaejEL
+.pre-commit-config.yaml      @NaejEL

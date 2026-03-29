@@ -1,0 +1,8 @@
+name: asset-tracker
+version: v1.0.0
+description: Reference plugin — simple equipment asset tracker (CMMS proof-of-concept)
+route: /plugins/asset-tracker
+backend_url: http://maintify-plugin-asset-tracker:8090
+resources:
+  memory_mb: 128
+  cpu_milli_cores: 250

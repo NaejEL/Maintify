@@ -1,0 +1,41 @@
+# Static Analysis Dockerfile
+FROM golang:1.24-alpine AS static-analysis
+
+# Install analysis tools and Python
+RUN apk add --no-cache \
+    git \
+    gcc \
+    musl-dev \
+    curl \
+    bash \
+    wget \
+    unzip \
+    python3 \
+    py3-pip \
+    py3-virtualenv
+
+# Install golangci-lint
+RUN go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+
+# Install gosec for security analysis
+RUN go install github.com/securego/gosec/v2/cmd/gosec@latest
+
+# Install sonar-scanner
+RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip && \
+    unzip sonar-scanner-cli-4.8.0.2856-linux.zip && \
+    mv sonar-scanner-4.8.0.2856-linux /opt/sonar-scanner && \
+    ln -s /opt/sonar-scanner/bin/sonar-scanner /usr/local/bin/sonar-scanner
+
+# Install semgrep in virtual environment (PEP 668 compliance)
+RUN python3 -m venv /opt/semgrep-venv && \
+    . /opt/semgrep-venv/bin/activate && \
+    pip install semgrep && \
+    ln -s /opt/semgrep-venv/bin/semgrep /usr/local/bin/semgrep
+
+WORKDIR /app
+
+# Copy scripts (from tests/scripts since build context is parent directory)
+COPY tests/scripts/ /app/scripts/
+RUN chmod +x /app/scripts/*.sh
+
+CMD ["./scripts/run-static-analysis.sh"]

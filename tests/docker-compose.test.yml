@@ -1,0 +1,141 @@
+version: '3.8'
+
+services:
+  # Test Database - Isolated from main development
+  test-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: maintify_test
+      POSTGRES_USER: maintify_test
+      POSTGRES_PASSWORD: maintify_test
+    ports:
+      - "5433:5432"
+    volumes:
+      - test_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U maintify_test -d maintify_test"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Test Redis - Isolated from main development
+  test-redis:
+    image: redis:7-alpine
+    ports:
+      - "6380:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # Static Analysis Container
+  static-analysis:
+    build:
+      context: ..
+      dockerfile: tests/docker/Dockerfile.static-analysis
+    volumes:
+      - ../core:/app/core:ro
+      - ../test-results:/app/results
+    environment:
+      - SONAR_HOST_URL=http://sonarqube:9000
+      - SONAR_LOGIN=${SONAR_TOKEN:-}
+    depends_on:
+      - sonarqube
+    command: ["./scripts/run-static-analysis.sh"]
+
+  # Unit Test Runner
+  unit-tests:
+    build:
+      context: ..
+      dockerfile: tests/docker/Dockerfile.test
+    volumes:
+      - ../core:/app/core:ro
+      - ../test-results:/app/results
+    environment:
+      - CGO_ENABLED=1
+      - GOOS=linux
+    command: ["./scripts/run-unit-tests.sh"]
+
+  # Integration Test Runner
+  integration-tests:
+    build:
+      context: ..
+      dockerfile: tests/docker/Dockerfile.test
+    volumes:
+      - ../core:/app/core:ro
+      - ../test-results:/app/results
+    environment:
+      - DB_HOST=test-db
+      - DB_PORT=5432
+      - DB_USER=maintify_test
+      - DB_PASSWORD=maintify_test
+      - DB_NAME=maintify_test
+      - REDIS_HOST=test-redis
+      - REDIS_PORT=6379
+      - CGO_ENABLED=1
+      - GOOS=linux
+    depends_on:
+      test-db:
+        condition: service_healthy
+      test-redis:
+        condition: service_healthy
+    command: ["./scripts/run-integration-tests.sh"]
+
+  # Security Scanning
+  security-scan:
+    build:
+      context: ..
+      dockerfile: tests/docker/Dockerfile.security
+    volumes:
+      - ../core:/app/core:ro
+      - ../test-results:/app/results
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    command: ["./scripts/run-security-scan.sh"]
+
+  # SonarQube for Code Quality Analysis
+  sonarqube:
+    image: sonarqube:community
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+      SONAR_JDBC_URL: jdbc:postgresql://sonar-db:5432/sonar
+      SONAR_JDBC_USERNAME: sonar
+      SONAR_JDBC_PASSWORD: sonar
+    ports:
+      - "9000:9000"
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_extensions:/opt/sonarqube/extensions
+    depends_on:
+      - sonar-db
+
+  # SonarQube Database
+  sonar-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: sonar
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonar
+    volumes:
+      - sonar_postgres_data:/var/lib/postgresql/data
+
+  # Test Results Dashboard
+  test-dashboard:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./test-results:/usr/share/nginx/html:ro
+      - ./docker/nginx-test.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - static-analysis
+      - unit-tests
+      - integration-tests
+
+volumes:
+  test_postgres_data:
+  sonar_postgres_data:
+  sonarqube_data:
+  sonarqube_logs:
+  sonarqube_extensions:
