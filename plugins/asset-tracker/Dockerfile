@@ -9,7 +9,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -o asset-tracker .
 
 # ---- runtime stage ----
-FROM alpine:3.20
+FROM alpine:3.23
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
