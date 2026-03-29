@@ -1,0 +1,44 @@
+version: 2
+updates:
+  # Keep GitHub Actions pinned versions up to date
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # Go modules — one entry per module
+  - package-ecosystem: "gomod"
+    directory: "/core"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "gomod"
+    directory: "/builder"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "gomod"
+    directory: "/plugins/asset-tracker"
+    schedule:
+      interval: "weekly"
+
+  # Docker base images — one entry per Dockerfile directory
+  - package-ecosystem: "docker"
+    directory: "/core"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "docker"
+    directory: "/builder"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "docker"
+    directory: "/web"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "docker"
+    directory: "/plugins/asset-tracker"
+    schedule:
+      interval: "weekly"

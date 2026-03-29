@@ -1,0 +1,32 @@
+# Security Scanning Dockerfile
+FROM alpine:latest
+
+# Install security scanning tools
+RUN apk add --no-cache \
+    docker \
+    curl \
+    bash \
+    git \
+    python3 \
+    py3-pip
+
+# Install Trivy for vulnerability scanning
+RUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+
+# Install Grype for vulnerability scanning
+RUN curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
+
+# Install Nancy for Go dependency vulnerability scanning
+RUN curl -L https://github.com/sonatypecommunity/nancy/releases/download/v1.0.46/nancy-v1.0.46-linux-amd64 -o /usr/local/bin/nancy && \
+    chmod +x /usr/local/bin/nancy
+
+# Install Semgrep for security pattern detection
+RUN pip3 install semgrep
+
+WORKDIR /app
+
+# Copy scripts (from tests/scripts since build context is parent directory)
+COPY tests/scripts/ /app/scripts/
+RUN chmod +x /app/scripts/*.sh
+
+CMD ["./scripts/run-security-scan.sh"]

@@ -1,0 +1,345 @@
+openapi: "3.0.3"
+info:
+  title: Maintify Core API
+  description: |
+    REST API for the Maintify Core service.
+
+    All `/api/*` endpoints require a valid JWT Bearer token (`Authorization: Bearer <token>`).
+    Plugin lifecycle endpoints additionally require the `system.admin` RBAC permission.
+  version: "1.0.0"
+  contact:
+    name: Maintify
+
+servers:
+  - url: http://localhost:8080
+    description: Local development
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    PluginMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          example: asset-tracker
+        description:
+          type: string
+          example: Simple asset tracking plugin
+        version:
+          type: string
+          example: v1.0.0
+        backend_url:
+          type: string
+          example: http://maintify-plugin-asset-tracker:8090
+        frontend_url:
+          type: string
+          example: ""
+        schema:
+          type: string
+          example: ""
+        route:
+          type: string
+          example: /plugins/asset-tracker
+        depends_on:
+          type: array
+          items:
+            type: string
+        resources:
+          type: object
+          properties:
+            memory_mb:
+              type: integer
+              example: 128
+            cpu_milli_cores:
+              type: integer
+              example: 250
+
+    PluginRuntimeStatus:
+      type: object
+      properties:
+        name:
+          type: string
+          example: asset-tracker
+        state:
+          type: string
+          enum: [unknown, running, stopped, failed]
+          example: running
+        last_error:
+          type: string
+          example: ""
+        updated_at:
+          type: string
+          format: date-time
+        compose_path:
+          type: string
+          example: /plugins/asset-tracker/docker-compose.yml
+
+    PluginHealthResult:
+      type: object
+      properties:
+        name:
+          type: string
+          example: asset-tracker
+        healthy:
+          type: boolean
+          example: true
+        status_code:
+          type: integer
+          example: 200
+        latency_ms:
+          type: integer
+          example: 12
+        error:
+          type: string
+          example: ""
+        checked_at:
+          type: string
+          format: date-time
+
+    PluginDiagnostics:
+      type: object
+      properties:
+        status:
+          $ref: "#/components/schemas/PluginRuntimeStatus"
+        health:
+          $ref: "#/components/schemas/PluginHealthResult"
+
+    DiagnosticsReport:
+      type: object
+      properties:
+        checked_at:
+          type: string
+          format: date-time
+        total_count:
+          type: integer
+          example: 2
+        healthy_count:
+          type: integer
+          example: 1
+        plugins:
+          type: array
+          items:
+            $ref: "#/components/schemas/PluginDiagnostics"
+
+    DiscoveryIssue:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [filesystem, metadata, conflict]
+        plugin:
+          type: string
+        path:
+          type: string
+        message:
+          type: string
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "plugin not found"
+
+security:
+  - bearerAuth: []
+
+paths:
+  # ── Health ──────────────────────────────────────────────────────────────────
+  /health:
+    get:
+      summary: Basic liveness check
+      operationId: healthCheck
+      security: []
+      tags: [Health]
+      responses:
+        "200":
+          description: Service is up
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: healthy
+
+  /health/live:
+    get:
+      summary: Kubernetes liveness probe
+      operationId: livenessProbe
+      security: []
+      tags: [Health]
+      responses:
+        "200":
+          description: Process is alive
+
+  /health/ready:
+    get:
+      summary: Kubernetes readiness probe
+      operationId: readinessProbe
+      security: []
+      tags: [Health]
+      responses:
+        "200":
+          description: Service is ready to accept traffic
+        "503":
+          description: Service not yet ready
+
+  # ── Plugin Lifecycle ─────────────────────────────────────────────────────────
+  /api/plugins:
+    get:
+      summary: List all discovered plugins and their metadata
+      operationId: listPlugins
+      tags: [Plugins]
+      responses:
+        "200":
+          description: Discovered plugin metadata
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PluginMeta"
+        "401":
+          description: Missing or invalid JWT
+        "403":
+          description: Insufficient permissions (requires system.admin)
+
+  /api/plugins/status:
+    get:
+      summary: Runtime status for all plugins
+      operationId: getPluginsStatus
+      tags: [Plugins]
+      responses:
+        "200":
+          description: Current runtime state of every known plugin
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PluginRuntimeStatus"
+        "401":
+          description: Missing or invalid JWT
+        "403":
+          description: Insufficient permissions (requires system.admin)
+
+  /api/plugins/diagnostics:
+    get:
+      summary: Aggregated status + HTTP health for all plugins
+      operationId: getPluginsDiagnostics
+      description: |
+        Performs live HTTP health probes against each plugin's `backend_url` and
+        returns the combined runtime state and health result.
+      tags: [Plugins]
+      responses:
+        "200":
+          description: Full diagnostics report
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DiagnosticsReport"
+        "401":
+          description: Missing or invalid JWT
+        "403":
+          description: Insufficient permissions (requires system.admin)
+
+  /api/plugins/{name}/start:
+    post:
+      summary: Start a plugin container
+      operationId: startPlugin
+      tags: [Plugins]
+      parameters:
+        - in: path
+          name: name
+          schema:
+            type: string
+          required: true
+          description: Plugin name (matches `name` in plugin.yaml)
+          example: asset-tracker
+      responses:
+        "200":
+          description: Plugin started; returns updated runtime status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PluginRuntimeStatus"
+        "400":
+          description: Plugin not found or invalid state transition
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Missing or invalid JWT
+        "403":
+          description: Insufficient permissions (requires system.admin)
+
+  /api/plugins/{name}/stop:
+    post:
+      summary: Stop a running plugin container
+      operationId: stopPlugin
+      tags: [Plugins]
+      parameters:
+        - in: path
+          name: name
+          schema:
+            type: string
+          required: true
+          description: Plugin name
+          example: asset-tracker
+      responses:
+        "200":
+          description: Plugin stopped; returns updated runtime status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PluginRuntimeStatus"
+        "400":
+          description: Plugin not found or not running
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Missing or invalid JWT
+        "403":
+          description: Insufficient permissions (requires system.admin)
+
+  /api/plugins/{name}/restart:
+    post:
+      summary: Restart a plugin container
+      operationId: restartPlugin
+      tags: [Plugins]
+      parameters:
+        - in: path
+          name: name
+          schema:
+            type: string
+          required: true
+          description: Plugin name
+          example: asset-tracker
+      responses:
+        "200":
+          description: Plugin restarted; returns updated runtime status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PluginRuntimeStatus"
+        "400":
+          description: Plugin not found or invalid state transition
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Missing or invalid JWT
+        "403":
+          description: Insufficient permissions (requires system.admin)
