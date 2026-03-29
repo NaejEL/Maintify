@@ -2,7 +2,7 @@
 
 # Use a builder stage to compile the application
 # Use a builder stage to compile the application
-FROM golang:1.24-alpine AS builder
+FROM golang:1.26-alpine AS builder
 WORKDIR /app
 # Copy module files first
 COPY core/go.mod core/go.sum ./
